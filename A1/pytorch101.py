@@ -19,15 +19,9 @@ def create_sample_tensor():
   Returns:
   - Tensor of shape (3, 2) as described above.
   """
-    #############################################################################
-    # Replace "pass" statement with your code
-
     x = torch.zeros(3, 2)
     x[0, 1] = 10
     x[1, 0] = 100
-    #############################################################################
-    #                            END OF YOUR CODE                               #
-    #############################################################################
     return x
 
 
@@ -54,13 +48,8 @@ def mutate_tensor(x, indices, values):
   Returns:
   - The input tensor x
   """
-    #############################################################################
-    #############################################################################
     for i, v in zip(indices, values):
         x[i] = v
-    #############################################################################
-    #                            END OF YOUR CODE                               #
-    #############################################################################
     return x
 
 
@@ -71,27 +60,15 @@ def count_tensor_elements(x):
   For example, a tensor of shape (10,) has 10 elements.a tensor of shape (3, 4)
   has 12 elements; a tensor of shape (2, 3, 4) has 24 elements, etc.
 
-  You may not use the functions torch.numel or x.numel. The input tensor should
-  not be modified.
-
   Inputs:
   - x: A tensor of any shape
 
   Returns:
   - num_elements: An integer giving the number of scalar elements in x
   """
-    #############################################################################
-    #   You CANNOT use the built-in functions torch.numel(x) or x.numel().      #
-    #############################################################################
-    # Replace "pass" statement with your code
-
     num_elements = 1
     for dim in iter(x.size()):
         num_elements *= dim
-
-    #############################################################################
-    #                            END OF YOUR CODE                               #
-    #############################################################################
     return num_elements
 
 
@@ -105,13 +82,7 @@ def create_tensor_of_pi(M, N):
   Returns:
   - x: A tensor of shape (M, N) filled with the value 3.14
   """
-    #############################################################################
-    #############################################################################
-    # Replace "pass" statement with your code
     x = torch.ones(M, N) * 3.14
-    #############################################################################
-    #                            END OF YOUR CODE                               #
-    #############################################################################
     return x
 
 
@@ -128,20 +99,16 @@ def multiples_of_ten(start, stop):
   - x: Tensor of dtype float64 giving multiples of ten between start and stop.
   """
     assert start <= stop
-    #############################################################################
-    #############################################################################
-    # Replace "pass" statement with your code
+
     x = []
     item = 10
+
     while item <= stop:
         if item >= start:
             x.append(float(item))
         item = item + 10
 
     x = torch.tensor(x, dtype=torch.float64)
-    #############################################################################
-    #                            END OF YOUR CODE                               #
-    #############################################################################
     return x
 
 
@@ -168,16 +135,11 @@ def slice_indexing_practice(x):
   """
     assert x.shape[0] >= 3
     assert x.shape[1] >= 5
-    #############################################################################
-    #############################################################################
-    # Replace "pass" statement with your code
+
     last_row = x[-1, :]
     third_col = x[:, 2:3]
     first_two_rows_three_cols = x[0:2, 0:3]
     even_rows_odd_cols = x[0:x.shape[0]:2, 1:x.shape[1]:2]
-    #############################################################################
-    #                            END OF YOUR CODE                               #
-    #############################################################################
     out = (
         last_row,
         third_col,
@@ -210,19 +172,14 @@ def slice_assignment_practice(x):
 
   Returns: x
   """
-    #############################################################################
-    #############################################################################
-    # Replace "pass" statement with your code
     assert (x.shape[0] >= 4 and x.shape[1] >= 6)
+
     x[:2, :1] = 0
     x[:2, 1:2] = 1
     x[:2, 2:6] = 2
     x[2:4, [0, 2]] = 3
     x[2:4, [1, 3]] = 4
     x[2:4, 4:6] = 5
-    #############################################################################
-    #                            END OF YOUR CODE                               #
-    #############################################################################
     return x
 
 
@@ -241,12 +198,7 @@ def shuffle_cols(x):
   - The third column of y is the same as the third column of x
   - The fourth column of y is the same as the second column of x
   """
-    #############################################################################
-    #############################################################################
     y = x[:, [0, 0, 2, 1]]
-    #############################################################################
-    #                            END OF YOUR CODE                               #
-    #############################################################################
     return y
 
 
@@ -264,13 +216,7 @@ def reverse_rows(x):
            reversed; that is the first row of y is equal to the last row of x,
            the second row of y is equal to the second to last row of x, etc.
   """
-    #############################################################################
-    #############################################################################
-    # Replace "pass" statement with your code
     y = x[torch.arange(x.shape[0]-1, -1, -1), :]
-    #############################################################################
-    #                            END OF YOUR CODE                               #
-    #############################################################################
     return y
 
 
@@ -289,14 +235,8 @@ def take_one_elem_per_col(x):
   - The second element of y is the first element of the second column of x
   - The third element of y is the fourth element of the third column of x
   """
-    #############################################################################
-    #############################################################################
-    # Replace "pass" statement with your code
     assert x.shape[0] >= 4 and x.shape[1] >= 3
     y = torch.tensor([x[1, 0], x[0, 1], x[3, 2]])
-    #############################################################################
-    #                            END OF YOUR CODE                               #
-    #############################################################################
     return y
 
 
@@ -314,13 +254,7 @@ def count_negative_entries(x):
   Returns:
   - num_neg: Integer giving the number of negative values in x
   """
-    #############################################################################
-    #############################################################################
-    # Replace "pass" statement with your code
     num_neg = torch.sum(x < 0)
-    #############################################################################
-    #                            END OF YOUR CODE                               #
-    #############################################################################
     return num_neg
 
 
@@ -337,15 +271,9 @@ def make_one_hot(x):
        In other words, if x[n] = c then y[n, c] = 1; all other elements of y are
        zeros. The dtype of y should be torch.float32.
   """
-    #############################################################################
-    #############################################################################
-    # Replace "pass" statement with your code
     y = torch.zeros(len(x), 1 + max(x), dtype=torch.float32)
     for ind, val in enumerate(x):
         y[ind, val] = 1
-    #############################################################################
-    #                            END OF YOUR CODE                               #
-    #############################################################################
     return y
 
 
@@ -370,14 +298,9 @@ def reshape_practice(x):
   Returns:
   - y: A reshaped version of x of shape (3, 8) as described above.
   """
-    #############################################################################
-    #############################################################################
     y = x.reshape((2, 3, 4))
     y = y.permute(1, 0, 2)
     y = y.reshape((3, 8))
-    #############################################################################
-    #                            END OF YOUR CODE                               #
-    #############################################################################
     return y
 
 
@@ -407,13 +330,8 @@ def zero_row_min(x):
   - y: Tensor of shape (M, N) that is a copy of x, except the minimum value
        along each row is replaced with 0.
   """
-    #############################################################################
-    #############################################################################
     y = x.clone()
     y[[i for i in range(y.shape[0])], y.argmin(dim=1)] = 0
-    #############################################################################
-    #                            END OF YOUR CODE                               #
-    #############################################################################
     return y
 
 
@@ -438,8 +356,6 @@ def batched_matrix_multiply(x, y, use_loop=True):
        matrix multiplication between x[i] of shape (N, M) and y[i] of shape
        (M, P). It should have the same dtype as x.
   """
-    #############################################################################
-    #############################################################################
     z = torch.zeros(x.shape[0], x.shape[1], y.shape[2])
 
     if use_loop:
@@ -447,9 +363,6 @@ def batched_matrix_multiply(x, y, use_loop=True):
             z[batch, :, :] = torch.matmul(x[batch, :, :], y[batch, :, :])
     else:
         z = torch.bmm(x, y)
-    #############################################################################
-    #                            END OF YOUR CODE                               #
-    #############################################################################
     return z
 
 
@@ -463,12 +376,6 @@ def normalize_columns(x):
   tensor y of shape (M, N) where y[i, j] = (x[i, j] - mu_j) / sigma_j, where
   mu_j is the mean of the column x[:, j].
 
-  Your implementation should not use any explicit Python loops (including
-  list/set/etc comprehensions); you may only use basic arithmetic operations on
-  tensors (+, -, *, /, **, sqrt), the sum reduction function, and reshape
-  operations to facilitate broadcasting. You should not use torch.mean,
-  torch.std, or their instance method variants x.mean, x.std.
-
   Input:
   - x: Tensor of shape (M, N).
 
@@ -476,12 +383,9 @@ def normalize_columns(x):
   - y: Tensor of shape (M, N) as described above. It should have the same dtype
     as the input x.
   """
-    #############################################################################
-    #############################################################################
-    y = (x - x.mean(dim=0)) / x.std(dim=0)
-    #############################################################################
-    #                            END OF YOUR CODE                               #
-    #############################################################################
+    mean = x.sum(dim=0) / x.shape[0]
+    var = (x - mean).pow(2).sum(dim=0) / (x.shape[0]-1)
+    y = (x - mean) / var.sqrt()
     return y
 
 
@@ -518,13 +422,7 @@ def mm_on_gpu(x, w):
   Returns:
   - y: Tensor of shape (A, C) as described above. It should not be in GPU.
   """
-    y = None
-    #############################################################################
-    #############################################################################
     x = x.cuda()
     w = w.cuda()
     y = x.mm(w).cpu()
-    #############################################################################
-    #                            END OF YOUR CODE                               #
-    #############################################################################
     return y
