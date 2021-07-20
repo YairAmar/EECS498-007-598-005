@@ -223,21 +223,11 @@ def nn_train(params, loss_func, pred_func, X, y, X_val, y_val, learning_rate=1e-
     # Compute loss and gradients using the current minibatch
     loss, grads = loss_func(params, X_batch, y=y_batch, reg=reg)
     loss_history.append(loss.item())
-
-    #########################################################################
-    # TODO: Use the gradients in the grads dictionary to update the         #
-    # parameters of the network (stored in the dictionary self.params)      #
-    # using stochastic gradient descent. You'll need to use the gradients   #
-    # stored in the grads dictionary defined above.                         #
-    #########################################################################
     # Replace "pass" statement with your code
     params["b1"] -= learning_rate * grads["b1"]
     params["W1"] -= learning_rate * grads["W1"]
     params["b2"] -= learning_rate * grads["b2"]
     params["W2"] -= learning_rate * grads["W2"]
-    #########################################################################
-    #                             END OF YOUR CODE                          #
-    #########################################################################
 
     if verbose and it % 100 == 0:
       print('iteration %d / %d: loss %f' % (it, num_iters, loss.item()))
@@ -251,7 +241,6 @@ def nn_train(params, loss_func, pred_func, X, y, X_val, y_val, learning_rate=1e-
       val_acc = (y_val_pred == y_val).float().mean().item()
       train_acc_history.append(train_acc)
       val_acc_history.append(val_acc)
-
       # Decay learning rate
       learning_rate *= learning_rate_decay
 
@@ -305,10 +294,7 @@ def nn_get_search_params():
                               e.g. [1.0, 0.95, ...]
   """
   # Replace "pass" statement with your code
-  # learning_rates = [1e-5, 1e-4, 1e-3, 1e-2, 1e-1, 1]
   learning_rate_decays = [1, 0.95, 0.9]
-  # regularization_strengths = [0, 1e-4, 1e-3, 1e-2, 1e-1]
-  # hidden_sizes = [32, 128, 256]
   hidden_sizes = [400, 450, 500, 550]
   learning_rates = [1e-1, 3e-1, 5e-1, 7e-1, 9e-1, 1e0]
   regularization_strengths = [5e-5, 7e-5, 9e-5, 1e-4, 3e-4, 5e-4, 7e-4]
@@ -347,19 +333,6 @@ def find_best_net(data_dict, get_param_set_fn):
   best_stat = None
   best_val_acc = 0.0
 
-  #############################################################################
-  # TODO: Tune hyperparameters using the validation set. Store your best      #
-  # trained model in best_net.                                                #
-  #                                                                           #
-  # To help debug your network, it may help to use visualizations similar to  #
-  # the ones we used above; these visualizations will have significant        #
-  # qualitative differences from the ones we saw above for the poorly tuned   #
-  # network.                                                                  #
-  #                                                                           #
-  # Tweaking hyperparameters by hand can be fun, but you might find it useful #
-  # to write code to sweep through possible combinations of hyperparameters   #
-  # automatically like we did on the previous exercises.                      #
-  #############################################################################
   # Replace "pass" statement with your code
   X_train = data_dict["X_train"]
   X_val = data_dict["X_val"]
