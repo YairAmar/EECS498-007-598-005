@@ -39,6 +39,7 @@ class Linear(object):
     n = x.shape[0]
     x_flat = x.reshape(n, -1)
     out = torch.matmul(x_flat, w) + b
+
     cache = (x, w, b)
     return out, cache
 
