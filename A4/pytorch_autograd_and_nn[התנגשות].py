@@ -361,6 +361,7 @@ class ResNet(nn.Module):
     blocks.append(ResNetStem(Cin, stage_args[0][0]))
 
     for stage_arg in stage_args:
+        print(*stage_arg)
         blocks.append(ResNetStage(*stage_arg, block))
     
     self.cnn = nn.Sequential(*blocks)
@@ -368,6 +369,7 @@ class ResNet(nn.Module):
     #                                 END OF YOUR CODE                         #
     ############################################################################
     self.fc = nn.Linear(stage_args[-1][1], num_classes)
+    print((stage_args[-1][1], num_classes))
   
   def forward(self, x):
     scores = None
@@ -378,7 +380,10 @@ class ResNet(nn.Module):
     # Replace "pass" statement with your code
     x = self.cnn(x)
     x = x.mean(dim=(2, 3))
-    x = flatten(x)    
+    print(x.shape)
+    x = flatten(x)
+    print("yay")
+    
     scores = self.fc(x)
     ############################################################################
     #                                 END OF YOUR CODE                         #
@@ -401,29 +406,7 @@ class ResidualBottleneckBlock(nn.Module):
     # Store the main block in self.block and the shortcut in self.shortcut.    #
     ############################################################################
     # Replace "pass" statement with your code
-    if downsample:
-      stride = 2
-    else:
-      stride = 1
-
-    self.block = nn.Sequential(OrderedDict([
-      ('bn1', nn.BatchNorm2d(Cin)),
-      ('relu1', nn.ReLU()),
-      ('conv1', nn.Conv2d(in_channels=Cin, out_channels=Cout//4, kernel_size=1, stride=stride)),
-      ('bn2', nn.BatchNorm2d(Cout//4)),
-      ('relu2', nn.ReLU()),
-      ('conv2', nn.Conv2d(in_channels=Cout//4, out_channels=Cout//4, kernel_size=3, padding=1)),
-      ('bn3', nn.BatchNorm2d(Cout // 4)),
-      ('relu3', nn.ReLU()),
-      ('conv3', nn.Conv2d(in_channels=Cout // 4, out_channels=Cout, kernel_size=1))
-    ]))
-    if downsample:
-      self.shortcut = nn.Conv2d(Cin, Cout, kernel_size=1, stride=2)
-    else:
-      if Cin == Cout:
-        self.shortcut = nn.Identity(Cin, Cout)
-      else:
-        self.shortcut = nn.Conv2d(Cin, Cout, kernel_size=1, stride=1)
+    pass
     ############################################################################
     #                                 END OF YOUR CODE                         #
     ############################################################################
